@@ -6,6 +6,12 @@
 
 Detol is a tool that allows you to perform tasks easily and automatically, most features are still under development and may cause errors if used incorrectly.
 
+## Downloads
+
+|Version                                                                             |Advisable|Stable|
+|------------------------------------------------------------------------------------|---------|--------|
+|[V0.1.0 Pre-release](<https://github.com/JustNicofu/Detol/releases/tag/pre-release>)|✔️         |✔️      |
+
 ## Resources
 
 Project resources you should check out to be more informed.
