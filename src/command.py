@@ -4,9 +4,9 @@ import platform
 import socket
 import psutil
 
-def init(node : node): ...
+def init(node : node) -> None: ...
 
-def help(node : node): 
+def help(node : node) -> None: 
     print("""[help] Help command panel
     [arguments] category
         Remember "Every arguments start with - example:  -<argName>".
@@ -28,7 +28,7 @@ def help(node : node):
         end - Taskname.
 """)    
     
-def sysinfo(node : node):
+def sysinfo(node : node) -> None:
     print("[sysinfo] Sysinfo command panel")
     print("    [system]", platform.system())
     print("    [release]", platform.release())
@@ -40,7 +40,7 @@ def sysinfo(node : node):
     print("    [platform]", platform.platform())
     print("    [ip]", socket.gethostbyname(socket.gethostname()))
 
-def end(node : node):
+def end(node : node) -> None:
 
     print("[Warning] Be careful what you're closing; you might be closing a process that's fundamental.")
     ask = input("[Asking] You wanna continue with the end. Y|N? ")
@@ -48,14 +48,14 @@ def end(node : node):
     if ask.lower() != "y":
         return
     
-    taskName = node.arguments["name"] if "name" in node.arguments else "[None]"
+    taskName: str = node.arguments["name"] if "name" in node.arguments else "[None]"
 
     for proc in psutil.process_iter():
         if proc.name() == taskName:
             proc.kill()
 
-def task(node : node):
-    taskName = node.arguments["name"] if "name" in node.arguments else "[None]"
+def task(node : node) -> None:
+    taskName: str = node.arguments["name"] if "name" in node.arguments else "[None]"
 
     for proc in psutil.process_iter():
         if proc.name() == taskName:
@@ -68,7 +68,7 @@ def task(node : node):
             print(f"    [started] {proc.create_time()}")
             print(f"    [threads] {proc.threads()}")
     
-def tasks(node : node):
+def tasks(node : node) -> None:
     print("[tasks] process running")
     for proc in psutil.process_iter():
         try:
@@ -85,23 +85,23 @@ commandList: dict[str, Callable] = {
     # DON'T REQUIRE ARGS.
 
     "init" : {
-        "args" : False,
+        "args" : None,
         "func": init
     },
 
     "help" : {
-        "args" : False,
+        "args" : None,
         "func" : help
     },
 
     "tasks" : {
-        "args" : False,
+        "args" : None,
         "func" : tasks
     },
 
 
     "sysinfo" : {
-        "args" : False,
+        "args" : None,
         "func" : sysinfo
     },
 

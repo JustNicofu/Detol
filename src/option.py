@@ -14,6 +14,4 @@ optionList: dict[str, str] = {
 
     "-author" : "author",
 
-    "-delete" : "delete",
-    
 }

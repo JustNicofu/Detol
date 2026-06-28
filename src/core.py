@@ -3,8 +3,8 @@ from command import *
 from node import node
 from option import *
 
-commands = commandList
-options = optionList
+commands: str = commandList
+options: str = optionList
 
 class message:
     def __init__(self, type: str, details: str) -> None:
@@ -64,7 +64,7 @@ class parse:
             self.current = None
 
     def parse(self) -> Union[node,message]:
-        result = node()
+        result: node = node()
 
         while self.current:
 
@@ -92,7 +92,7 @@ class parse:
 class dispatcher:
     def __init__(self, argNode : node, commands: dict[str,Callable]) -> None:
         self.node: node = argNode
-        self.commands = commands
+        self.commands: dict[str,] = commands
     
     def execute(self) -> None:
         if self.node.command in self.commands:
